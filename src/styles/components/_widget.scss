@@ -19,6 +19,7 @@
   display: flex;
   justify-content: space-between;
   padding: $m-size;
+  border-bottom: .3rem solid darken($blue, 10%);
 }
 
 .widget-header__title {
