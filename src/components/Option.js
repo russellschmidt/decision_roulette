@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const Option = (props) => (
   <div className="option">
@@ -12,6 +12,6 @@ const Option = (props) => (
       remove
       </button>
   </div>
-);
+)
 
-export default Option;
+export default Option

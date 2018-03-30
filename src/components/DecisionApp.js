@@ -1,67 +1,67 @@
-import React from 'react';
-import AddOption from './AddOption';
-import Action from './Action';
-import Header from './Header';
-import Options from './Options';
-import OptionModal from './OptionModal';
+import React from 'react'
+import AddOption from './AddOption'
+import Action from './Action'
+import Header from './Header'
+import Options from './Options'
+import OptionModal from './OptionModal'
 
 export default class IndecisionApp extends React.Component {
   state = {
     options: [],
     selectedOption: undefined
-  };
+  }
   handleDeleteOptions = () => {
-    this.setState(() => ({ options: [] }));
-  };
+    this.setState(() => ({ options: [] }))
+  }
   handleClearSelectedOption = () => {
-    this.setState(() => ({ selectedOption: undefined }));
+    this.setState(() => ({ selectedOption: undefined }))
   }
   handleDeleteOption = (optionToRemove) => {
     this.setState((prevState) => ({
       options: prevState.options.filter((option) => optionToRemove !== option)
-    }));
-  };
+    }))
+  }
   handlePick = () => {
-    const randomNum = Math.floor(Math.random() * this.state.options.length);
-    const option = this.state.options[randomNum];
+    const randomNum = Math.floor(Math.random() * this.state.options.length)
+    const option = this.state.options[randomNum]
     this.setState(() => ({
       selectedOption: option
-    }));
-  };
+    }))
+  }
   handleAddOption = (option) => {
     if (!option) {
-      return 'Enter valid value to add item';
+      return 'That is not a valid option. Please try again.'
     } else if (this.state.options.indexOf(option) > -1) {
-      return 'This option already exists';
+      return 'Sorry, no duplicates allowed.'
     }
 
     this.setState((prevState) => ({
       options: prevState.options.concat(option)
-    }));
-  };
+    }))
+  }
   componentDidMount() {
     try {
-      const json = localStorage.getItem('options');
+      const json = localStorage.getItem('options')
       const options = JSON.parse(json);
 
       if (options) {
-        this.setState(() => ({ options }));
+        this.setState(() => ({ options }))
       }
     } catch (e) {
-      // Do nothing at all
+      console.log('componentDidMount did not fire correctly')
     }
   }
   componentDidUpdate(prevProps, prevState) {
     if (prevState.options.length !== this.state.options.length) {
-      const json = JSON.stringify(this.state.options);
-      localStorage.setItem('options', json);
+      const json = JSON.stringify(this.state.options)
+      localStorage.setItem('options', json)
     }
   }
   componentWillUnmount() {
-    console.log('componentWillUnmount');
+    console.log('componentWillUnmount')
   }
   render() {
-    const subtitle = 'Put your life in the hands of a computer';
+    const subtitle = 'Let AI ComputerGod Decide For You'
 
     return (
       <div>
@@ -87,6 +87,6 @@ export default class IndecisionApp extends React.Component {
           handleClearSelectedOption={this.handleClearSelectedOption}
         />
       </div>
-    );
+    )
   }
 }
