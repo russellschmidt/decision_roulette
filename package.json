@@ -37,7 +37,5 @@
     "serve": "live-server public",
     "build": "webpack",
     "dev-server": "webpack-dev-server",
-    "start": "webpack-dev-server --open --config webpack.dev.js",
-    "go-pro": "webpack --config webpack.prod.js"
   }
 }
